@@ -5,7 +5,7 @@ IdeaForge is a vibrant space where people from diverse backgrounds and interests
 # Preview
 
 <img src="/preview.png">
-<a href="https://ideaforge.vercel.app" target="_blank">Live Preview</a> | <a href="https://ideaforge-server.vercel.app" target="_blank">Live API</a> | <a href="https://documenter.getpostman.com/view/27027258/2sA3dxEXJh" target="_blank">Postman</a>
+<a href="https://ideaforge-main.vercel.app/" target="_blank">Live Preview</a> | <a href="https://ideaforge-main.onrender.com/" target="_blank">Live API</a> | <a href="https://documenter.getpostman.com/view/27027258/2sA3dxEXJh" target="_blank">Postman</a>
 
 # Requirements
 
