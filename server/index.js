@@ -18,7 +18,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://ideaforge.vercel.app",
+            "https://ideaforge-main.vercel.app",
         ],
         credentials: true,
     })
