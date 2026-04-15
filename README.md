@@ -14,7 +14,7 @@ IdeaForge is a vibrant space where people from diverse backgrounds and interests
 # How to Run
 
 ```
-git clone https://github.com/masum184e/ideaforge.git
+git clone <your-repository-url>
 
 # BACKEND
 cd server
@@ -32,7 +32,7 @@ npm run dev
 ## Frontend
 
 ```
-VITE_SERVER_ENDPOINT = https://ideaforge-server.vercel.app:3000/api
+VITE_SERVER_ENDPOINT = http://localhost:3000/api
 VITE_TOKEN_KEY = ideaforge
 VITE_USER_ROLE = role
 VITE_COOKIE_EXPIRES = 1
@@ -50,6 +50,33 @@ COOKIE_EXPIRES = 5d
 COOKIE_KEY = ideaforge
 UPLOAD_DIRECTORY = uploads
 ```
+
+# Deployment Guide
+
+This project is configured to be deployed with **MongoDB Atlas** for the database, **Render** for the backend, and **Vercel** for the frontend.
+
+### 1. Database (MongoDB Atlas)
+1. Set up a free cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+2. Ensure you allow all IPs (`0.0.0.0/0`) in your Network access settings.
+3. Keep track of your connection string.
+
+### 2. Backend (Render)
+1. Create a new Web Service on [Render](https://render.com) and point it to your repository.
+2. Set **Root Directory** to `server`.
+3. Set **Build Command** to `npm install`.
+4. Set **Start Command** to `npm start`.
+5. Add the backend environment variables specified above, replacing `DATABASE_URL` with your Atlas connection string.
+
+### 3. Frontend (Vercel)
+1. Create a new project on [Vercel](https://vercel.com) and import your repository.
+2. Set **Root Directory** to `client`.
+3. Fill in the frontend environment variables, setting `VITE_SERVER_ENDPOINT` to your new Render URL (e.g., `https://your-backend.onrender.com/api`).
+4. Click Deploy.
+
+### 4. CORS Configuration
+Ensure `server/index.js` includes your deployed Vercel frontend URL in its `cors` connection origins.
+
+---
 
 # Features
 
