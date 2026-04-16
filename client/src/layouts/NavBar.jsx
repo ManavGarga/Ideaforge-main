@@ -24,15 +24,27 @@ export default function NavBar() {
                                     >IdeaForge</Typography>
                                 </Box>
                             </Link>
-                            <Box >
-                            {
-                                !cookie && <>
-                                <ButtonGroup >
-                                    <Link to="/registration"><Button sx={{ backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)", color: "#a0a0a0", "&:hover": { backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)" } }}>Join</Button></Link>
-                                    <Link to="/login"><Button sx={{ backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)", color: "#a0a0a0", "&:hover": { backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)" } }}>Login</Button></Link>
-                                </ButtonGroup>
-                                </>
-                            }
+
+                            <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                                <Link to="/showcase">
+                                    <Button sx={{ backgroundColor: '#ffffff', borderLeft: '4px solid #8b5cf6', boxShadow: "0 0 10px rgba(139, 92, 246, 0.1)", color: "#1e293b", fontWeight: "bold", "&:hover": { backgroundColor: '#f8fafc', borderLeft: '4px solid #2563eb' } }}>
+                                        Showcase
+                                    </Button>
+                                </Link>
+                                {
+                                    !cookie ? (
+                                        <ButtonGroup>
+                                            <Link to="/registration"><Button sx={{ backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)", color: "#a0a0a0", "&:hover": { backgroundColor: '#f8fafc', borderLeft: '4px solid #2563eb' } }}>Join</Button></Link>
+                                            <Link to="/login"><Button sx={{ backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)", color: "#a0a0a0", "&:hover": { backgroundColor: '#f8fafc', borderLeft: '4px solid #2563eb' } }}>Login</Button></Link>
+                                        </ButtonGroup>
+                                    ) : (
+                                        <Link to="/profile">
+                                            <Button sx={{ backgroundColor: '#ffffff', borderLeft: '4px solid #2563eb', boxShadow: "0 0 10px rgba(0, 243, 255, 0.1)", color: "#a0a0a0", "&:hover": { backgroundColor: '#f8fafc', borderLeft: '4px solid #2563eb' } }}>
+                                                Dashboard
+                                            </Button>
+                                        </Link>
+                                    )
+                                }
                             </Box>
                         </Box>
                     </Box>

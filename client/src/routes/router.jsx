@@ -21,6 +21,7 @@ import PublicRoute from "../layouts/PublicRoute";
 import Product from "../pages/Product";
 import Subscription from "../pages/Subscription";
 import Search from "../pages/Search";
+import Showcase from "../pages/Showcase";
 
 const router = createBrowserRouter([
   {
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+  },
+  {
+    path: "/showcase",
+    element: <Showcase />,
   },
   {
     path: "*",

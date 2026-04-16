@@ -143,4 +143,52 @@ const getSingleProduct = async (req, res) => {
     }
 }
 
-export { addProduct, removeProduct, editProduct, getAllProduct, getSingleProduct };
+const getPublicProducts = async (req, res) => {
+    try {
+        const { limit, sort } = req.query;
+
+        const pipeline = [
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'authorId',
+                    foreignField: '_id',
+                    as: 'author'
+                }
+            },
+            {
+                $unwind: "$author"
+            },
+            {
+                $project: {
+                    _id: 1,
+                    title: 1,
+                    image: 1,
+                    price: 1,
+                    description: 1,
+                    authorName: "$author.fullName",
+                    authorEmail: "$author.email",
+                    createdAt: 1,
+                    __v: 1
+                }
+            }
+        ];
+
+        if (sort === 'createdAt') {
+            pipeline.push({ $sort: { createdAt: -1 } });
+        }
+
+        if (limit) {
+            pipeline.push({ $limit: parseInt(limit) });
+        }
+
+        const products = await ProductModel.aggregate(pipeline);
+        return res.status(200).json({ status: true, products });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ status: false, message: "Internal Server Error" });
+    }
+}
+
+export { addProduct, removeProduct, editProduct, getAllProduct, getSingleProduct, getPublicProducts };

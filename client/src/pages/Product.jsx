@@ -57,6 +57,12 @@ const Product = () => {
     setLoadingStatus,
   ]);
 
+  const handleBuy = () => {
+    setAlertSeverity("info");
+    setAlertMessage("Checkout feature is currently in Developer Mode. Payment Gateway pending integration.");
+    setAlertBoxOpenStatus(true);
+  };
+
   return (
     <Container sx={{ maxWidth: 1280, margin: "20px auto", padding: 2 }}>
       {product ? (
@@ -104,6 +110,7 @@ const Product = () => {
                   fontWeight: "semibold",
                 }}
                 startIcon={<ShoppingCart />}
+                onClick={handleBuy}
               >
                 Buy
               </Button>
