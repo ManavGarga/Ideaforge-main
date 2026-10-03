@@ -74,11 +74,21 @@ const TaskManager = () => {
         }
       );
 
-      setAllTask((prevTasks) => [
-        ...prevTasks,
-        { ...data, selectedDate, taskStatus: "todo" },
-      ]);
       if (response.data.status) {
+        // Refetch tasks so the new task has a proper _id for delete/edit
+        const tasksResponse = await axios.get(
+          `${import.meta.env.VITE_SERVER_ENDPOINT}/tasks`,
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get(
+                import.meta.env.VITE_TOKEN_KEY
+              )}`,
+            },
+          }
+        );
+        if (tasksResponse.data.status) {
+          setAllTask(tasksResponse.data.tasks);
+        }
         setOpenModal(false);
         methods.reset();
         setSelectedDate(dayjs());

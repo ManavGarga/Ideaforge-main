@@ -16,12 +16,12 @@ const removeUploadedFile = (filename) => {
 const addProduct = async (req, res) => {
     try {
         const { title, price, description } = req.body;
-        const image = req.file.filename;
+        const image = req.file ? req.file.filename : null;
         const authorId = req.user._id.toString();
 
-        if (!title || !price || !description || !image) {
+        if (!title || !price || !description) {
             if (image) removeUploadedFile(image);
-            return res.status(400).json({ status: false, message: 'All fields are required.' });
+            return res.status(400).json({ status: false, message: 'Title, price, and description are required.' });
         }
 
         if (isNaN(price) || Number(price) <= 0) {

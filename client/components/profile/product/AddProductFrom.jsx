@@ -107,12 +107,11 @@ const AddProductForm = () => {
               style={{ display: "none" }}
               type="file"
               {...register("productimage", {
-                required: "File is required",
                 validate: {
                   validFileType: (value) =>
-                    (value &&
-                      value.length > 0 &&
-                      ["image/jpeg", "image/png"].includes(value[0].type)) ||
+                    !value ||
+                    value.length === 0 ||
+                    ["image/jpeg", "image/png"].includes(value[0].type) ||
                     "Only JPEG and PNG files are allowed",
                 },
               })}

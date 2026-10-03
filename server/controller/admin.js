@@ -21,7 +21,11 @@ const login = async (req, res) => {
             return res.status(401).json({ status: false, message: "Wrong Password" });
         }
 
-        const token = jwt.sign({ userId: existingUser._id }, process.env.JWT_SECRET_KEY, { expiresIn: process.env.TOKEN_EXPIRES || '1h' });
+        const token = jwt.sign(
+            { userId: existingUser._id.toString() }, 
+            process.env.JWT_SECRET_KEY || 'defaultsecret', 
+            { expiresIn: process.env.TOKEN_EXPIRES || '1h' }
+        );
         const expires = new Date(Date.now() + (parseInt(process.env.COOKIE_EXPIRES)) * 24 * 60 * 60 * 1000);
         res.cookie(process.env.COOKIE_KEY, token, {
             httpOnly: false,

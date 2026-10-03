@@ -74,11 +74,10 @@ const Login = () => {
       console.log(error);
       setAlertBoxOpenStatus(true);
       setAlertSeverity("error");
-      setAlertMessage("Something Went Wrong");
+      
       // server error message with status code
-      error.response.data.message
-        ? setAlertMessage(error.response.data.message)
-        : setAlertMessage(error.message);
+      const errorMessage = error.response?.data?.message || "Something Went Wrong";
+      setAlertMessage(errorMessage);
     }
   };
 
